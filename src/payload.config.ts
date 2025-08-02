@@ -11,6 +11,7 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Logo } from './collections/Logo'
 import { Stats } from './collections/Stats'
+import { Feedback } from './collections/Feedback'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Logo, Stats],
+  collections: [Users, Logo, Stats, Feedback],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -39,7 +40,9 @@ export default buildConfig({
       enabled: true,
       collections: {
         logo: true,
+        feedback: true,
       },
+
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
     payloadCloudPlugin(),
